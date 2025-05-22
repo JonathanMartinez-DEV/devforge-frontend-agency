@@ -1,0 +1,16 @@
+body {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  text-align: center;
+  background-color: #f8f0fb;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+h1,
+h2,
+.subtitle {
+  font-family: "Inknut Antiqua", serif;
+}

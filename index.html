@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="DevForge is a simulated frontend agency storefront where clients browse and purchase scoped developer services such as responsive layout builds, performance optimization, accessibility upgrades, and SEO enhancements."
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua&family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>DevForge &#45; Frontend Services on Demand</title>
+  </head>
+  <body>
+    <header>
+      <h1>DevForge</h1>
+      <p class="subtitle">Frontend Services on Demand</p>
+    </header>
+
+    <main>
+      <section id="services-section">
+        <!-- Render service cards here -->
+      </section>
+
+      <aside id="order-section">
+        <h2>Your Services</h2>
+        <!-- Render selected services here -->
+        <div id="order-summary">
+          <p>Total: $XXX</p>
+          <p>Estimated Time: XX hrs</p>
+          <button id="checkout-btn">Complete Order</button>
+        </div>
+      </aside>
+    </main>
+
+    <div class="modal" id="checkout-modal">
+      <form id="client-form">
+        <h2>Enter Client Info</h2>
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <button type="submit">Submit Order</button>
+      </form>
+    </div>
+
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
