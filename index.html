@@ -40,10 +40,42 @@
 
     <div class="modal" id="checkout-modal">
       <form id="client-form">
-        <h2>Enter Client Info</h2>
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <button type="submit">Submit Order</button>
+        <h2>Enter your card details</h2>
+        <input
+          type="text"
+          placeholder="Jonathan Martinez"
+          aria-label="Card Holder Name"
+          required
+        />
+        <input
+          type="text"
+          inputmode="numeric"
+          pattern="^\d{13,19}$"
+          maxlength="19"
+          autocomplete="cc-number"
+          aria-label="Credit Card Number"
+          placeholder="1234 1234 1234 1234"
+          required
+        />
+        <input
+          type="text"
+          inputmode="numeric"
+          pattern="^(0[1-9]|1[0-2])\/\d{2}$"
+          maxlength="5"
+          placeholder="MM/YY"
+          autocomplete="cc-exp"
+          aria-label="Credit Card Expiration Date"
+        />
+        <input
+          type="text"
+          inputmode="numeric"
+          pattern="^\d{3,4}$"
+          maxlength="4"
+          placeholder="123"
+          autocomplete="cc-csc"
+          aria-label="Security Code"
+        />
+        <button type="submit">Pay</button>
       </form>
     </div>
 
