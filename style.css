@@ -1,7 +1,6 @@
 body {
   font-family: "Inter", sans-serif;
   margin: 0;
-  text-align: center;
   background-color: #f8f0fb;
 }
 
@@ -10,7 +9,54 @@ h1 {
 }
 
 h1,
-h2,
-.subtitle {
+h2 {
   font-family: "Inknut Antiqua", serif;
+}
+
+/* Hero Section */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background-image: url(./images/hero-mobile-img.webp);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #f8f0fb;
+}
+
+.subtitle {
+  margin: 22px;
+  font-size: 1.2rem;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-cta {
+  background-color: #38bdf8;
+  color: #f8f0fb;
+  padding: 15px 25px;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  margin-top: 30px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  display: inline-block;
 }
