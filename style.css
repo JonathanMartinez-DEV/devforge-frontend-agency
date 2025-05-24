@@ -61,23 +61,33 @@ h2 {
   display: inline-block;
 }
 
+/* Main */
+
+main {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  max-width: 1308px;
+  margin: 0 auto;
+}
+
 /* Services Section */
 
 .services-section {
-  padding: 4em 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 4em;
+  gap: 24px;
+  padding: 42px 0;
 }
 
 /* Service Cards */
 
 .card-container {
-  border: 1px solid black;
   padding: 42px 16px 16px 16px;
   border-radius: 24px;
   max-width: 388px;
+  box-shadow: 0 0 6px black;
 }
 
 .card-container h2 {
@@ -134,13 +144,47 @@ h2 {
 
 /* buttons */
 
-.add-btn {
+.btn {
   padding: 18px 24px;
   border-radius: 30px;
   border: none;
   background-color: #38bdf8;
   color: white;
-  text-align: left;
   font-size: 1rem;
+  font-weight: 700;
+}
+
+.add-btn:hover,
+.complete-order-btn:hover {
   cursor: pointer;
+}
+
+.complete-order-btn {
+  display: block;
+  width: 100%;
+  margin: 42px auto 0;
+}
+
+.remove-btn {
+  padding: 0;
+  background-color: unset;
+  border: none;
+  color: darkgray;
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+
+/* order section */
+
+.order-section h2 {
+  text-align: center;
+}
+
+.cost-right {
+  float: right;
+}
+
+.total {
+  border-top: 2px solid #38bdf8;
+  padding-top: 24px;
 }
