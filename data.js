@@ -10,7 +10,7 @@ export const servicesArray = [
     ],
     price: 150,
     hours: 4,
-    id: 0,
+    uuid: `91bc843b-a751-4014-84b6-2860e20f3e96`,
     icon: `<i class="fa-solid fa-layer-group icon" id="icon"></i>`,
   },
   {
@@ -24,7 +24,7 @@ export const servicesArray = [
     ],
     price: 250,
     hours: 6,
-    id: 1,
+    uuid: `376ab8c0-2cc6-4175-b61e-4149d60607ad`,
     icon: `<i class="fa-solid fa-rocket icon" id="icon"></i>`,
   },
   {
@@ -37,7 +37,7 @@ export const servicesArray = [
     ],
     price: 100,
     hours: 2,
-    id: 2,
+    uuid: `e478b985-f63e-4b4a-bf6b-eee46d8c85c7`,
     icon: `<i class="fa-solid fa-chart-line icon" id="icon"></i>`,
   },
   {
@@ -50,7 +50,7 @@ export const servicesArray = [
     ],
     price: 120,
     hours: 3,
-    id: 3,
+    uuid: `a23533ad-9e7e-44a8-b8a3-9fc519bb2bd7`,
     icon: `<i class="fa-solid fa-universal-access icon" id="icon"></i>`,
   },
   {
@@ -63,7 +63,7 @@ export const servicesArray = [
     ],
     price: 180,
     hours: 4,
-    id: 4,
+    uuid: `7559c1b2-be34-462f-9881-5b5089a8fe19`,
     icon: `<i class="fa-solid fa-gauge icon" id="icon"></i>`,
   },
 ];

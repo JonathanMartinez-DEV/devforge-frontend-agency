@@ -176,6 +176,10 @@ main {
 
 /* order section */
 
+.order-section {
+  padding-bottom: 42px;
+}
+
 .order-section h2 {
   text-align: center;
 }
@@ -187,4 +191,8 @@ main {
 .total {
   border-top: 2px solid #38bdf8;
   padding-top: 24px;
+}
+
+.hidden {
+  display: none;
 }

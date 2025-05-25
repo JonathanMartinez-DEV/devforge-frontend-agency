@@ -1,15 +1,68 @@
 import { servicesArray } from "/data.js";
 
-renderServiceCards();
+let selectedServices = [];
+let total = 0;
 
-function renderServiceCards() {
-  document.getElementById("services-section").innerHTML = createHTML();
+document.addEventListener("click", (e) => {
+  const serviceID = e.target.dataset.selectBtn;
+
+  if (serviceID) {
+    handleSelectBtn(serviceID);
+  }
+});
+
+function handleSelectBtn(serviceID) {
+  const orderSection = document.getElementById("order-section");
+
+  if (orderSection.classList.contains("hidden")) {
+    orderSection.classList.remove("hidden");
+  }
+
+  if (!selectedServices.includes(serviceID)) {
+    selectedServices.push(serviceID);
+    renderSelectedService(serviceID);
+    updateTotalPrice(serviceID);
+  }
 }
 
-function createHTML() {
+function updateTotalPrice(serviceID) {
+  const totalAmount = document.getElementById("total-amount");
+
+  const selectedServiceObj = servicesArray.find(
+    (service) => service.uuid === serviceID
+  );
+
+  total += selectedServiceObj.price;
+
+  totalAmount.textContent = "$" + total;
+}
+
+function getSelectedHTML(serviceID) {
+  const selectedServiceObj = servicesArray.find(
+    (service) => service.uuid === serviceID
+  );
+
+  const { name, price, uuid } = selectedServiceObj;
+
+  return `
+    <p data-service="${uuid}">
+      <span class="text-left bold-text">
+        ${name}
+        <button type="button" class="remove-btn">remove</button>
+      </span>
+      <span class="cost-right bold-text">$${price}</span>
+    </p>
+    `;
+}
+
+function renderSelectedService(serviceID) {
+  document.getElementById("services").innerHTML += getSelectedHTML(serviceID);
+}
+
+function getServicesHTML() {
   const servicesHTML = servicesArray
     .map((service) => {
-      const { name, summary, description, price, icon } = service;
+      const { name, summary, description, price, uuid, icon } = service;
 
       return `
       <div class="card-container">
@@ -34,7 +87,7 @@ function createHTML() {
         </ul>
         <div class="card-btm-container">
           <p class="bold-text price">$${price}</p>
-          <button type="button" class="add-btn bold-text">Add to cart</button>
+          <button type="button" class="add-btn bold-text btn" data-select-btn="${uuid}">Select</button>
         </div>
       </div>
     `;
@@ -43,3 +96,9 @@ function createHTML() {
 
   return servicesHTML;
 }
+
+function renderServices() {
+  document.getElementById("services-section").innerHTML = getServicesHTML();
+}
+
+renderServices();
