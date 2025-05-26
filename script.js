@@ -1,62 +1,88 @@
 import { servicesArray } from "/data.js";
 
-let selectedServices = [];
-let total = 0;
+let selectedServiceIds = [];
 
 document.addEventListener("click", (e) => {
-  const serviceID = e.target.dataset.selectBtn;
+  if (e.target.dataset.selectBtn) {
+    toggleServiceSelection(e.target.dataset.selectBtn);
+  }
 
-  if (serviceID) {
-    handleSelectBtn(serviceID);
+  if (e.target.dataset.removeBtn) {
+    toggleServiceSelection(e.target.dataset.removeBtn);
   }
 });
 
-function handleSelectBtn(serviceID) {
+function toggleServiceSelection(serviceID) {
   const orderSection = document.getElementById("order-section");
+  const selectRemoveBtn = document.querySelector(
+    `[data-select-btn="${serviceID}"]`
+  );
+
+  if (selectRemoveBtn.textContent === "Select") {
+    selectRemoveBtn.innerText = "Remove";
+  } else {
+    selectRemoveBtn.innerText = "Select";
+  }
 
   if (orderSection.classList.contains("hidden")) {
     orderSection.classList.remove("hidden");
   }
 
-  if (!selectedServices.includes(serviceID)) {
-    selectedServices.push(serviceID);
-    renderSelectedService(serviceID);
+  if (!selectedServiceIds.includes(serviceID)) {
+    selectedServiceIds.push(serviceID);
+    renderSelectedService();
     updateTotalPrice(serviceID);
+  } else {
+    selectedServiceIds = selectedServiceIds.filter((id) => id !== serviceID);
+    renderSelectedService();
+    updateTotalPrice(serviceID);
+  }
+
+  if (selectedServiceIds.length === 0) {
+    orderSection.classList.add("hidden");
   }
 }
 
-function updateTotalPrice(serviceID) {
+function updateTotalPrice() {
   const totalAmount = document.getElementById("total-amount");
 
-  const selectedServiceObj = servicesArray.find(
-    (service) => service.uuid === serviceID
-  );
+  const total = selectedServiceIds.reduce((total, id) => {
+    const selectedServiceObj = servicesArray.find(
+      (service) => service.uuid === id
+    );
 
-  total += selectedServiceObj.price;
+    if (selectedServiceObj) {
+      return (total += selectedServiceObj.price);
+    }
+  }, 0);
 
   totalAmount.textContent = "$" + total;
 }
 
-function getSelectedHTML(serviceID) {
-  const selectedServiceObj = servicesArray.find(
-    (service) => service.uuid === serviceID
-  );
+function getSelectedHTML() {
+  const selectedServicesHTML = selectedServiceIds
+    .map((id) => {
+      const service = servicesArray.find((service) => service.uuid === id);
 
-  const { name, price, uuid } = selectedServiceObj;
+      const { name, price, uuid } = service;
 
-  return `
-    <p data-service="${uuid}">
-      <span class="text-left bold-text">
-        ${name}
-        <button type="button" class="remove-btn">remove</button>
-      </span>
-      <span class="cost-right bold-text">$${price}</span>
-    </p>
-    `;
+      return `
+      <p data-service="${uuid}">
+        <span class="text-left bold-text">
+          ${name}
+          <button type="button" class="remove-btn" data-remove-btn="${uuid}">remove</button>
+        </span>
+        <span class="cost-right bold-text">$${price}</span>
+      </p>
+      `;
+    })
+    .join("");
+
+  return selectedServicesHTML;
 }
 
-function renderSelectedService(serviceID) {
-  document.getElementById("services").innerHTML += getSelectedHTML(serviceID);
+function renderSelectedService() {
+  document.getElementById("services").innerHTML = getSelectedHTML();
 }
 
 function getServicesHTML() {
