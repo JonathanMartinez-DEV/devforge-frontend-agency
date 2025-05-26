@@ -2,6 +2,12 @@ import { servicesArray } from "/data.js";
 
 let selectedServiceIds = [];
 
+// TODO: add functionality to complete order btn
+// TODO: style modal
+// TODO: modal functionality and input validations
+// TODO: modal pay btn functionality closes modal and sends to thank you screen
+// TODO: REFACTOR
+
 document.addEventListener("click", (e) => {
   if (e.target.dataset.selectBtn) {
     toggleServiceSelection(e.target.dataset.selectBtn);
@@ -9,6 +15,20 @@ document.addEventListener("click", (e) => {
 
   if (e.target.dataset.removeBtn) {
     toggleServiceSelection(e.target.dataset.removeBtn);
+  }
+
+  if (e.target.id === "checkout-btn") {
+    handleCheckoutBtn();
+  }
+
+  if (e.target.id === "close-modal") {
+    closeModal();
+  }
+
+  if (e.target.id === "pay-btn") {
+    e.preventDefault();
+
+    handlePayBtn();
   }
 });
 
@@ -57,6 +77,35 @@ function updateTotalPrice() {
   }, 0);
 
   totalAmount.textContent = "$" + total;
+}
+
+function closeModal() {
+  const modal = document.getElementById("checkout-modal");
+
+  modal.classList.add("hidden");
+}
+
+function handleCheckoutBtn() {
+  const modal = document.getElementById("checkout-modal");
+
+  modal.classList.remove("hidden");
+}
+
+function handlePayBtn() {
+  closeModal();
+  renderThankYou();
+}
+
+function renderThankYou() {
+  document.querySelector("#order-section").innerHTML = getThankYouHtml(
+    document.querySelector("#name").value
+  );
+}
+
+function getThankYouHtml(name) {
+  return `
+    <p class="thank-you">Thanks, ${name}! Check your email for more information.</p>
+  `;
 }
 
 function getSelectedHTML() {
